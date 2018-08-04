@@ -32,7 +32,8 @@ object lucia {
 	}
 }
 
-object mostrador {
+
+object oficina {
 	var choferPrimeraOpcion
 	var choferSegundaOpcion
 	
@@ -41,16 +42,19 @@ object mostrador {
 		choferSegundaOpcion = segundo
 	}
 	
+	method cambiarPrimerChoferPor(fercho) { choferPrimeraOpcion = fercho }
+	method cambiarSegundoChoferPor(fercho) { choferSegundaOpcion = fercho }
+	
 	method intercambiarChoferes() {
 		const recuerdoPrimero = choferPrimeraOpcion
 		choferPrimeraOpcion = choferSegundaOpcion
 		choferSegundaOpcion = recuerdoPrimero
 	}
 	
-	method choferPreferidoPara(cliente, kms) {
+	method choferElegidoParaViaje(cliente, kms) {
 		const precioPrimerChofer = choferPrimeraOpcion.precioViaje(cliente, kms)
 		const precioSegundoChofer = choferSegundaOpcion.precioViaje(cliente, kms)
-		if (precioSegundoChofer <= precioPrimerChofer - 30) {
+		if (precioSegundoChofer < precioPrimerChofer - 30) {
 			return choferSegundaOpcion
 		} else {
 			return choferPrimeraOpcion
