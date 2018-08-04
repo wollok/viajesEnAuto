@@ -46,59 +46,23 @@ P.ej. si Lucía está reemplazando a Mariela, y Melina está trabajando para Ana
 Si en cambio Lucía está reemplazando a Gabriela, y manteniendo que Melina trabaja para Ana María, entonces los valores para 10 y 1 km son 324 y 32.4, porque corre el 20% de recargo que establece Gabriela.  
   
 
-<!--
-, con cada cliente dos valores: un precio por kilómetro, y un porcentaje de descuento.
+<br>
 
-A partir de estos valores pactados por la cooperativa, cada chofer decide cómo cobrar un viaje de una cantidad de kilómetros.
+## Oficina de la cooperativa
 
-Consideramos tres choferes:
-- **Roxana** le cobra a cada cliente el precio por kilómetro que pactó con la cooperativa; no tiene en cuenta el descuento.
-- **Gabriela** le cobra de base lo mismo a todos los clientes, 250 pesos el viaje, sin importar la longitud. A cada cliente le aplica el descuento que concertó con la agencia.
-- **Mariela** cobra como Roxana, a partir del precio pactado por kilómetro. Si el valor obtenido es de 200 pesos o más, aplica el descuento que le corresponde al cliente.
+Agregar al modelo un objeto que represente a la oficina desde la que la cooperativa despacha viajes.
 
-Estos son los valores que la cooperativa pactó con algunos clientes:
-- **Ludmila**: 18 pesos el kilómetro, 10% de descuento.
-- **Ana María**: 30 pesos el kilómetro, 20% de descuento.
-- **Teresa**: 22 pesos el kilómetro, 0% de descuento.
+En este modelo simplificado, cuando la oficina recibe un viaje, hay dos choferes que pueden tomarlo: uno que tiene prioridad (al que llamaremos _primera opción_ o _primer chofer_) y otro que es la _segunda opción_ (o _segundo chofer_).
 
-Veamos cuánto cobra cada chofer un viaje de 10 kilómetros.
-- _Roxana_: a Ludmila 180 pesos (18 x 10), a Ana María 300, a Teresa 220.
-- _Gabriela_: a Ludmila 225 (su precio fijo de 250 con el 10% de descuento que tiene Ludmila), a Ana María 200 (tiene 20% de descuento), a Teresa 250 (no tiene desceuento).
-- _Mariela_: a Ludmila 180 pesos, como no llega a 200 no le corresponde descuento; a Ana María 240 (300 menos el 20% de descuento); a Teresa 220 (le corresponde descuento pero es del 0%). 
---> 
-
-<!--
-hay varias personas que ofrecen servicios de viajes en auto, y otras que son sus clientes.
-Nos piden armar un modelo que maneje el precio que un chofer debe cobrarle a un cliente, y los viajes realizados.
-
-En este modelo vamos a considerar dos choferes: Roxana y Gabriela.
-Roxana le cobra a cada cliente un precio distinto, que pacta con cada uno. 
-Por otro lado, Gabriela cobra un precio único fijado por ella; pacta con cada cliente un porcentaje de descuento que se aplica sobre el precio único.
-
-<br> 
-
-P.ej. tomemos tres clientes: Gaspar, Azucena y Elsa.
-- Roxana pactó: 80 pesos el viaje con Gaspar, 75 con Azucena, 100 con Elsa.
-- El precio único de Gabriela es 90 pesos. 
-
- 
-
-Proyecto inicial sobre choferes de auto y sus clientes
-
-
-
-una remisera Roxana, que lleva distintos clientes, cada uno con su tarifa x km.
-roxana.llevar(cliente, kms)
-poder preguntar total kms recorridos y total recaudado.
-Además, roxana.precioViaje(cliente, kms)
-
-Variante: cada cliente tiene un % de descuento, el precio por km lo maneja Roxana.
-
-También que cada cliente sepa en qué zona vive (norte, sur, oeste)
-
-A Roxana le interesa llevar a un cliente si su tarifa x km es de 20 pesos o más. O hacer un viaje si es de más de 200 pesos.
-
-A Gabriela le interesa si el cliente vive en la zona de su base actual. Hay cuatro bases: Bernal y Solano en el Sur; Tablada en el Oeste; y Florida en el Norte.
-
-Gabriela cobra tarifa plana, según lo que indique la base actual. Bernal es configurable, Solano 30 pesos más que Bernal, Tablada 200, y Florida 240. Interesa saber cuántos viajes hizo.
--->
+El objeto `oficina` debe entender estos mensajes:
+- `asignarChoferes(chofer1, chofer2)`: establece los choferes de primera y de segunda opción.
+- `cambiarPrimerChoferPor(chofer)`: cambia el chofer de primera opción por el que se indica.
+- `cambiarSegundoChoferPor(chofer)`: cambia el chofer de segunda opción por el que se indica.
+- `intercambiarChoferes()`: intercambia los choferes de primera y segunda opción. O sea, el que era primera pasa a segunda, y viceversa.
+- `choferElegidoParaViaje(cliente, kms)`: devuelve el chofer que corresponde asignar a un viaje, dados el cliente y la cantidad de kilómetros. 
+  El criterio es el siguiente: si para ese viaje, el precio del segundo chofer es menor al del primero con una diferencia de más de 30 pesos, entonces se elige el segundo chofer; si no, se elige el primero.
+  
+Supongamos que en un momento dado el chofer de primera opción es Roxana, y el de segunda opción es Juana. En este caso
+- para un viaje de 10 kilómetros para Ana María, el chofer elegido es Juana, porque su precio de 200 pesos, es menor al de Roxana (300 pesos), y la diferencia es de más de 30 pesos.
+- si el viaje es para Teresa, entonces Roxana ofrece 220 pesos y Juana 200. El precio de Juana es menor, pero la diferencia no llega a 30 pesos. Por lo tanto, el chofer elegido es Roxana.
+- si el viaje es de 4 kilómetros para Teresa, entonces Roxana cobra 88 pesos y Juana 100. El precio de Roxana es menor, por lo tanto ella es la elegida.  
