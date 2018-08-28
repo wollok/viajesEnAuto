@@ -46,9 +46,13 @@ object oficina {
 	method cambiarSegundoChoferPor(fercho) { choferSegundaOpcion = fercho }
 	
 	method intercambiarChoferes() {
+		// versión "clásica"
 		const recuerdoPrimero = choferPrimeraOpcion
 		choferPrimeraOpcion = choferSegundaOpcion
 		choferSegundaOpcion = recuerdoPrimero
+		
+		// versión "objetosa"
+		// self.asignarChoferes(choferSegundaOpcion, choferPrimeraOpcion)
 	}
 	
 	method choferElegidoParaViaje(cliente, kms) {
