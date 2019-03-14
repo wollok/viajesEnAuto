@@ -1,6 +1,6 @@
 
 object roxana {
-	method precioViaje(cliente, kms) { 
+	method precioViaje(cliente, kms) {
 		return cliente.precioPactadoPorKm() * kms
 	}
 }
@@ -13,7 +13,7 @@ object gabriela {
 
 object mariela {
 	method precioViaje(cliente, kms) {
-		return 50.min(cliente.precioPactadoPorKm() * kms)
+		return 50.max(cliente.precioPactadoPorKm() * kms)
 	}
 }
 
@@ -25,7 +25,7 @@ object juana {
 
 object lucia {
 	var aQuienEstaReemplazando
-	
+
 	method estaReemplazandoA(quien) { aQuienEstaReemplazando = quien }
 	method precioViaje(cliente, kms) {
 		return aQuienEstaReemplazando.precioViaje(cliente, kms)
@@ -36,25 +36,25 @@ object lucia {
 object oficina {
 	var choferPrimeraOpcion
 	var choferSegundaOpcion
-	
+
 	method asignarChoferes(primero, segundo) {
 		choferPrimeraOpcion = primero
 		choferSegundaOpcion = segundo
 	}
-	
+
 	method cambiarPrimerChoferPor(fercho) { choferPrimeraOpcion = fercho }
 	method cambiarSegundoChoferPor(fercho) { choferSegundaOpcion = fercho }
-	
+
 	method intercambiarChoferes() {
 		// versión "clásica"
 		const recuerdoPrimero = choferPrimeraOpcion
 		choferPrimeraOpcion = choferSegundaOpcion
 		choferSegundaOpcion = recuerdoPrimero
-		
+
 		// versión "objetosa"
 		// self.asignarChoferes(choferSegundaOpcion, choferPrimeraOpcion)
 	}
-	
+
 	method choferElegidoParaViaje(cliente, kms) {
 		const precioPrimerChofer = choferPrimeraOpcion.precioViaje(cliente, kms)
 		const precioSegundoChofer = choferSegundaOpcion.precioViaje(cliente, kms)
