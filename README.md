@@ -1,4 +1,7 @@
 # Viajes en auto
+ 
+[![Build Status](https://travis-ci.org/wollok/viajesEnAuto.svg?branch=master)](https://travis-ci.org/wollok/viajesEnAuto)
+
 
 La cooperativa de remiseros de Doctor Olaechea nos pide que le armemos un programa para manejar cuánto cobrar los viajes.
 La cooperativa pacta con cada cliente el precio por kilómetro que le va a cobrar. Estos son los valores que arregló con algunos clientes
