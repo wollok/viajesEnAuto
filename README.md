@@ -46,7 +46,7 @@ P.ej. si Lucía está reemplazando a Mariela, y Melina está trabajando para Lud
 - por un viaje de 10 kilómetros Lucía le cobra a Melina 150 pesos (el precio por kilómetro es 15, tres menos que lo que se pactó con Ludmila).
 - por un viaje de 1 kilómetro le va a cobrar 50 pesos, que es el mínimo que establece Mariela.
 
-Si en cambio Lucía está reemplazando a Gabriela, y manteniendo que Melina trabaja para Ludmila, entonces los valores para 10 y 1 km son 216 y 21.6, porque corre el 20% de recargo que establece Gabriela.  
+Si en cambio Lucía está reemplazando a Gabriela, y manteniendo que Melina trabaja para Ludmila, entonces los valores para 10 y 1 km son 180 y 18, porque corre el 20% de recargo que establece Gabriela.  
 
 
 <br>
