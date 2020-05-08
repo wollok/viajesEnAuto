@@ -1,3 +1,4 @@
+import clientes.*
 
 object roxana {
 	method precioViaje(cliente, kms) {
@@ -12,8 +13,11 @@ object gabriela {
 }
 
 object mariela {
+	
 	method precioViaje(cliente, kms) {
-		return 50.max(cliente.precioPactadoPorKm() * kms)
+		const precioMinimo = 50
+		const precio = cliente.precioPactadoPorKm() * kms
+		return precioMinimo.max(precio) 
 	}
 }
 
@@ -23,6 +27,15 @@ object juana {
 	}
 }
 
+
+
+
+
+
+
+
+
+
 object lucia {
 	var aQuienEstaReemplazando
 
@@ -31,6 +44,29 @@ object lucia {
 		return aQuienEstaReemplazando.precioViaje(cliente, kms)
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 object oficina {
@@ -45,15 +81,41 @@ object oficina {
 	method cambiarPrimerChoferPor(fercho) { choferPrimeraOpcion = fercho }
 	method cambiarSegundoChoferPor(fercho) { choferSegundaOpcion = fercho }
 
+	method choferPrimeraOpcion() {
+		return choferPrimeraOpcion
+	}
+
+	method choferSegundaOpcion() {
+		return choferSegundaOpcion
+	}
+
+
+
+
+	method intercambiarChoferes_variante() {
+		self.asignarChoferes(choferSegundaOpcion, choferPrimeraOpcion)
+	}
+
+
 	method intercambiarChoferes() {
 		// versión "clásica"
-		const recuerdoPrimero = choferPrimeraOpcion
+		const pivot = choferPrimeraOpcion
 		choferPrimeraOpcion = choferSegundaOpcion
-		choferSegundaOpcion = recuerdoPrimero
-
-		// versión "objetosa"
-		// self.asignarChoferes(choferSegundaOpcion, choferPrimeraOpcion)
+		choferSegundaOpcion = pivot
 	}
+
+	method intercambiarChoferes_mal() {
+		choferPrimeraOpcion = choferSegundaOpcion
+		choferSegundaOpcion = choferPrimeraOpcion
+	}
+
+
+
+
+
+
+
+
 
 	method choferElegidoParaViaje(cliente, kms) {
 		const precioPrimerChofer = choferPrimeraOpcion.precioViaje(cliente, kms)
@@ -65,3 +127,6 @@ object oficina {
 		}
 	}
 }
+
+
+//		return 50.max(cliente.precioPactadoPorKm() * kms)
